@@ -95,7 +95,8 @@ struct pinentry pinentry =
     NULL,        /* default_ok  */
     NULL,        /* default_cancel  */
     NULL,        /* default_prompt  */
-    NULL         /* Assuan context.  */
+    NULL,        /* Assuan context.  */
+    NULL         /* cache_id  */
   };
 
 
@@ -695,6 +696,12 @@ option_handler (ASSUAN_CONTEXT ctx, const char *key, const char *value)
       pinentry.default_prompt = strdup (value);
       if (!pinentry.default_prompt)
 	return ASSUAN_Out_Of_Core;
+    }
+  else if (!strcmp (key, "cache-id"))
+    {
+      pinentry.cache_id = strdup (value);
+      if (!pinentry.cache_id)
+    return ASSUAN_Out_Of_Core;
     }
   else
     return ASSUAN_Invalid_Option;
