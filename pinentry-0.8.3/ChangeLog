@@ -1,0 +1,80 @@
+2013-04-26  Werner Koch  <wk@gnupg.org>
+
+	Release 0.8.3.
+
+2013-04-26  Andre Heinecke  <aheinecke@intevation.de>
+
+	Switch to i686-w64-mingw32 as default Windows toolchain.
+	* autogen.sh <build-w32>: Insert i686-w64-mingw32.
+	* configure.ac: Pretty print final info.
+
+	Fix declaration of lock_set_foreground_window for pinnetry-w32.
+	* w32/main.c (lock_set_foreground_window): Remove WINUSERAPI
+	qualifier.
+
+	Fix ressource compilation of pinentry-w32.
+	* w32/pinentry-w32.rc: Include windows.h
+
+2013-02-16  Ben Kibbey  <bjk@luxsci.net>
+
+	Curses build fix for DOS'ish systems.
+
+2013-02-14  Ben Kibbey  <bjk@luxsci.net>
+
+	Document the --timeout and SETTIMEOUT feature.
+
+	Add timeout support to the Gtk+2 pinentry.
+	* gtk+-2/pinentry-gtk-2.c (create_window): Add timer.
+	(timeout_cb): New.
+
+	Add timeout support to the curses pinentry.
+	* pinentry/pinentry-curses.c (dialog_run): Set the window input to
+	non-blocking.
+	(catchsig): New.
+	(main): Catch SIGALRM and set the timeout.
+
+2013-01-06  Ben Kibbey  <bjk@luxsci.net>
+
+	Fix initializing the timeout timer.
+	When timeout == 0 a segfault would occur.
+
+2012-08-08  Werner Koch  <wk@gnupg.org>
+
+	Release 0.8.2.
+
+	Distribute only bzip2 tarballs.
+	* Makefile.am (AUTOMAKE_OPTIONS): New.
+
+	qt4: Update all moc files to Qt version 4.8.2.
+
+	Update config.guess and config.sub.
+	* config.guess, config.sub: Update to version 2012-07-31 from gnulib.
+
+	Change build system to auto-generate the ChangeLog.
+	* build-aux/gitlog-to-changelog: New script.  Taken from GnuPG.
+	* build-aux/git-log-fix: New file.
+	* build-aux/git-log-footer: New file.
+	* doc/HACKING: Describe the ChangeLog policy
+	* ChangeLog: New file.
+	* Makefile.am (EXTRA_DIST): Add new files.
+	(gen-ChangeLog): New.
+	(dist-hook): Run gen-ChangeLog.
+
+	Rename existing ChangeLog files to ChangeLog-old.
+
+	Switch to an automagic beta numbering scheme.
+	* configure.ac: Add all the required m4 magic.
+
+2012-08-08  Werner Koch  <wk@gnupg.org>
+
+	NB: Changes done before August 8, 2012 are described in per
+	directory files named ChangeLog-old.  See doc/HACKING for
+	details.
+
+        -----
+        Copyright (C) 2002, 2003, 2010, 2012 g10 Code GmbH
+
+	Copying and distribution of this file and/or the original GIT
+	commit log messages, with or without modification, are
+	permitted provided the copyright notice and this notice are
+	preserved.
